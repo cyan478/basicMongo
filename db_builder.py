@@ -22,6 +22,8 @@ for student in peepdict:
     courses = {}
     
     for item in coursedict:
+        print(student['id'])
+        print(item['id'])
         if student['id'] == item['id']:
             courses[item['code']] = item['mark']
             
