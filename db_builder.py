@@ -1,4 +1,4 @@
-import csv
+import csv, pprint
 from pymongo import MongoClient
 
 server = MongoClient('149.89.150.100')
@@ -28,3 +28,6 @@ for student in peepdict:
     info['courses'] = courses
     
     students.insert_one(info)
+
+for student in students.find():
+    pprint.pprint(student)
