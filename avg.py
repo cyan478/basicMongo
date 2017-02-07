@@ -17,16 +17,18 @@ server = MongoClient('149.89.150.100')
 
 db = server.celharry
 
-avg = 0
-counter = 0
+
+
 
 for student in db.students.find():
+        avg = 0
+        counter = 0
 	for course in student['courses'].keys():
 		grade = student['courses'][course]
-		avg += grade
+		avg += int(grade)
 		counter += 1
 	avg = avg / counter
-	print "Student: " + student['name'] + "\n ID: " + student['id'] + "\n Average: " + avg + "\n"
+	print "Student: " + student['name'] + "\n ID: " + student['id'] + "\n Average: %d"%(avg) + "\n"
 
 
 
