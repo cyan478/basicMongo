@@ -9,8 +9,10 @@ db = server.celharry
 db.students.drop()
 
 students = db.students
+teachers = db.teachers
 
 
+#============================================= STUDENTS
 peeps = open("peeps.csv") 
 peepdict = csv.DictReader(peeps)
 
@@ -26,15 +28,42 @@ for student in peepdict:
     coursedict = csv.DictReader(cours)    
 
     for key in coursedict:
-        print(student['id'])
+        #print(student['id'])
 
-        print(key['id'])
+        #print(key['id'])
         if student['id'] == key['id']:
             courses[key['code']] = key['mark']
             
     info['courses'] = courses
     
     students.insert_one(info)
-
+'''
 for student in students.find():
     pprint.pprint(student)
+'''
+#============================================= TEACHERS
+teach = open("teachers.csv")
+teachdict = csv.DictReader(teach)
+
+for t in teachdict:
+	info = {}
+	info['teacher'] = t['teacher']
+	info['period'] = t['period']
+	info['code'] = t['code']
+
+	stu = []
+	code = t['code']
+	for s in students.find({ '$and': [ {'code': code} ]}):
+		stu.append(s['id'])
+
+	info['students'] = stu
+
+	teachers.insert_one(info)
+
+for teacher in teachers.find():
+    pprint.pprint(teacher)
+
+
+
+ 
+
