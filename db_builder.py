@@ -34,7 +34,7 @@ for student in peepdict:
         if student['id'] == key['id']:
             x['code'] = key['code']
             x['mark'] = key['mark']
-        courses.append(x)
+            courses.append(x)
             
     info['courses'] = courses
     

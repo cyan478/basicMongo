@@ -23,8 +23,9 @@ db = server.celharry
 for student in db.students.find():
         avg = 0
         counter = 0
-	for course in student['courses'].keys():
-		grade = student['courses'][course]
+	for course in student['courses']:
+                print course
+		grade = course['mark']
 		avg += int(grade)
 		counter += 1
 	avg = avg / counter
