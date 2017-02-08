@@ -63,10 +63,10 @@ for t in teachdict:
 	info['students'] = stu
 
 	teachers.insert_one(info)
-
+'''
 for teacher in teachers.find():
     pprint.pprint(teacher)
-
+'''
 
 
  
