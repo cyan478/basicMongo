@@ -7,6 +7,7 @@ server = MongoClient('149.89.150.100')
 db = server.celharry
 
 db.students.drop()
+db.teachers.drop()
 
 students = db.students
 teachers = db.teachers
@@ -21,18 +22,21 @@ for student in peepdict:
     info['name'] = student['name']
     info['id'] = student['id']
     info['age'] = student['age']
-    courses = {}
+    courses = []
 
     cours = open("courses.csv") 
     
     coursedict = csv.DictReader(cours)    
 
     for key in coursedict:
+        x = {}
         #print(student['id'])
 
         #print(key['id'])
         if student['id'] == key['id']:
-            courses[key['code']] = key['mark']
+            x['code'] = key['code']
+            x['mark'] = key['mark']
+        courses.append(x)
             
     info['courses'] = courses
     
