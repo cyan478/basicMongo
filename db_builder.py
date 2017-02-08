@@ -57,7 +57,7 @@ for t in teachdict:
 
 	stu = []
 	code = t['code']
-	for s in students.find({ '$and': [ {'code': code} ]}):
+	for s in students.find({'courses.code':code}):
 		stu.append(s['id'])
 
 	info['students'] = stu
